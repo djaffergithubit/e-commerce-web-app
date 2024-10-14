@@ -1,0 +1,20 @@
+const express = require('express')
+const createOrderController = require('../Controllers/Admin/createOrderController')
+const getOrdersController = require('../Controllers/Admin/getOrdersController')
+const getOrderByIdController = require('../Controllers/getOrderByIdController')
+const getUserOrdersController = require('../Controllers/getUserOrdersController')
+const getOrderProductsController = require('../Controllers/getOrderProductsController')
+const updateStatusController = require('../Controllers/Admin/updateStatusController')
+const verifyToken = require('../middleware/verifyToken')
+const isAdmin = require('../middleware/isAdmin')
+const router = express.Router()
+
+router.get('', isAdmin, getOrdersController)
+router.get('/order/:id', getOrderByIdController)
+router.get('/order-products/:id', getOrderProductsController)
+router.get('/my-orders', verifyToken, getUserOrdersController)
+router.post('/create', createOrderController)
+router.put('/updateStatus/:orderId',isAdmin, updateStatusController)
+// router.delete('/delete/:id', removeOrderController)
+
+module.exports = router

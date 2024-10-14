@@ -42,7 +42,7 @@ Make sure you have the following installed:
 ### Steps
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/e-commerce-web-app.git
+   git clone https://github.com/djaffergithubit/e-commerce-web-app.git
    cd e-commerce-mern
 
 2. Install backend dependencies:
@@ -60,11 +60,13 @@ Make sure you have the following installed:
     MONGO_URI=your_mongodb_connection_string
     SECRET_TOKEN= your-secret-key
 
-4. Start the backend server::
+4. Start the backend server
+    ```bash
     cd backend
     npm run dev
 
-5. Start the frontend development server:
+5. Start the frontend development server
+    ```bash
     cd my-app
     npm run dev
 

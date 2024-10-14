@@ -42,7 +42,7 @@ Make sure you have the following installed:
 ### Steps
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/e-commerce-mern.git
+   git clone https://github.com/yourusername/e-commerce-web-app.git
    cd e-commerce-mern
 
 2. Install backend dependencies:

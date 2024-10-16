@@ -29,7 +29,11 @@ router.post('/checkout-session', verifyToken, async (req, res) => {
             line_items: lineItems,
             mode: 'payment',
             success_url: 'http://localhost:5173/success',
-            cancel_url: 'http://localhost:5173/sfailed'
+            cancel_url: 'http://localhost:5173/failed',
+            // metadata: {
+            //     userId: req.user.id,  // Attach user info for order creation
+            //     products: JSON.stringify(products)  // Pass product data to webhook
+            // }
         })
 
         products.map( async (product) => {

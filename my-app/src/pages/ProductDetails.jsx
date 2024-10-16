@@ -125,10 +125,10 @@ const ProductDetails = () => {
                 <div className=' pt-6'>
                 <div className=''>
                     <h1 className=' font-semibold mb-2'>Product Description</h1>
-    <div dangerouslySetInnerHTML={{ __html: currentProduct.description }} />
-</div>
-
+                    <div dangerouslySetInnerHTML={{ __html: currentProduct.description }} />
                 </div>
+
+            </div>
                 
             </div>
                     </div>

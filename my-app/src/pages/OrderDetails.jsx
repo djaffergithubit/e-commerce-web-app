@@ -86,7 +86,7 @@ const OrderDetails = () => {
        <br />
        <div className={`${overflow && 'w-full max-w-[975px] overflow-x-scroll xl:block'} pb-2`}>
            <Head
-               forOderDetails={true} 
+               forOrderDetails={true} 
            />
            <div>
                {

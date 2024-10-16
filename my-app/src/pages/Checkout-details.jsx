@@ -27,7 +27,8 @@ const CheckoutDetails = () => {
         setTotal(somme)
     }, [currentUserCarts])
 
-    const makePayment = async() =>{
+    const makePayment = async(e) =>{
+      e.preventDefault()
       const stripe = await loadStripe("pk_test_51OmKpWDSijvIwbhLgkOIAlP0EukW4J5YBSiTZ3fhkz9QhNo0RgRYjXsIT9YyPOat8O0r1oDgkwdhK72ppAzkXQCM00OZ0Jzxfc")
       try {
           const response = await axios.post('http://localhost:3500/payment/checkout-session', {products: currentUserCarts}, {

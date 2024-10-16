@@ -41,7 +41,7 @@ const Table = ({data, categories, isProducts, isCoupon, isOrder}) => {
  }
 
   return (
-    <div>
+    <div className=''>
         <table
          className=' w-full min-w-[900px] border-collapse table-fixed'>
         <thead className=' border-y-[3px] border-blue-400 px-2'>
@@ -126,8 +126,8 @@ data.map((item, index)=>(
             {(item.productCategory) && <td className=' pt-1 pb-2'>{categories[item.productCategory]}</td>}
             {(item.parentCategory) && <td className=' pt-1 pb-2'>{categories[item.parentCategory]}</td>}
             {item.productPrice && <td className=' pt-1 pb-2'>${item.productPrice}</td>}
-            {item.quantity >=0 && <td className=' pt-1 pb-2'>{item.quantity}</td>}
-            {(item.productPrice && (item.quantity >=0) ) && <td className=' pt-1 pb-2'>{ item.quantity > 0 ? (`$${item.productPrice * item.quantity}`) : '0'}</td>}
+            {item.quantity && <td className=' pt-1 pb-2'>{item.quantity >= 0 ? item.quantity : '0'}</td>}
+            {item.productPrice && ((item.productPrice > 0 && (item.quantity)  ) ? <td className=' pt-1 pb-2'>{ item.quantity > 0 ? (`$${item.productPrice * item.quantity}`) : '0'}</td> : <td className=' pt-1 pb-2'>0</td>)}
             <td className=' pt-1 pb-2 flex items-center'>
               {isProducts && <i className=" cursor-pointer fa-regular fa-eye mr-2 text-purple-900 text-xl" onClick={()=>Navigate(`/product-details/${item._id}`)}></i>}
               {isProducts && <i className=" cursor-pointer fa-regular fa-pen-to-square mr-2 text-green-700 text-xl"></i>}

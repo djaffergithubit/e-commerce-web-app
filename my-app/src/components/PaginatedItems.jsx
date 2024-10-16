@@ -2,19 +2,19 @@ import React, { useCallback, useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import ProductItems from './productItems';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
-import { activeButtonValue } from '../states/activeButtonSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { activeButtonValue, setActiveButton } from '../states/activeButtonSlice';
 import { currentBrandValue } from '../states/currentBrandSlice';
 
-function PaginatedItems({ itemsPerPage, sortOption }) {
+function PaginatedItems({ itemsPerPage, searchProduct, items, setItems }) {
   const [itemOffset, setItemOffset] = useState(0);
-  const [items, setItems] = useState([]);
   const [products, setProducts] = useState([]);
   const [itemCategory, setItemCategory] = useState([]);
   const [itemBrand, setItemBrand] = useState([]);
   const currentBrand = useSelector(currentBrandValue);
 
   const activeButton = useSelector(activeButtonValue);
+  const dispatch = useDispatch()
 
   const handlePageClick = useCallback((event) => {
     const newOffset = (event.selected * itemsPerPage) % items.length;
@@ -23,6 +23,15 @@ function PaginatedItems({ itemsPerPage, sortOption }) {
     );
     setItemOffset(newOffset);
   }, [items, itemsPerPage]);
+
+  useEffect(() => {
+    if (searchProduct === '') {
+      setItems(products)
+    }else{
+      dispatch(setActiveButton({ value: 'All' }))
+      setItems(items?.filter(item => (item.productName.toLowerCase()).includes(searchProduct.toLowerCase())))
+    }
+  }, [searchProduct])
 
   // for each product, fetch the category
   const fetchCategories = useCallback(async () => {
@@ -109,50 +118,6 @@ function PaginatedItems({ itemsPerPage, sortOption }) {
       }
     })
   }, [currentBrand, getFilteredItems, products]);
-
-  // filter the items based on the sortOption
-  useEffect(()=>{
-    // switch (sortOption) {
-    //   case 'Latest':
-    //     setItems(products.sort((a, b) =>
-    //        new Date(b.dateAdded) - new Date(a.dateAdded))
-    //     )
-    //     break;
-      
-    //     case 'Lowest Price':
-    //       const LowestPriceProducts = products.sort((a, b)=> a.productPrice - b.productPrice)
-    //       setItems(LowestPriceProducts)
-    //       break;
-
-    //     case 'Highest Price':
-    //       const HighestPriceProducts = products.sort((a, b)=> b.productPrice - a.productPrice)
-    //       setItems(HighestPriceProducts)
-    //       break;
-
-    //     case 'A-Z':
-    //       setItems(products.sort((a, b) => {
-    //         let nameA = a.productName.toLowerCase(),
-    //         nameB = b.productName.toLowerCase()
-    //         return  nameA.localeCompare(nameB)
-    //         }));
-          
-    //         break;
-                
-    //     case 'Z-A':
-    //       setItems(products.sort((a, b) => {let nameA = a.productName.toUpperCase(); 
-    //         let nameB = b.productName.toUpperCase();
-    //         return (nameA > nameB) ? 
-    //         1 : (-1 + nameA.localeCompare(nameB))}));
-
-    //         break;
-                  
-    //     default:
-    //       setItems(products)
-    //         break;
-    // }
-
-    // console.log(items);
-  }, [sortOption, products])
 
   const endOffset = itemOffset + itemsPerPage;
   const currentItems = items.slice(itemOffset, endOffset);

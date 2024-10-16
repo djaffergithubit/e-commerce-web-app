@@ -61,9 +61,13 @@ const AllProducts = () => {
     getProductCategory()
   }, [products])
 
-  // useEffect(()=>{
-  //   getFilteredProducts()
-  // }, [searchForm, products])
+  useEffect(() => {
+    if (searchForm.length > 0) {
+      setProducts(products.filter(product => (product.productName.toLowerCase()).includes(searchForm.toLowerCase())))
+    }else{
+      getAllProducts()
+    }
+  }, [searchForm, products])
 
   return (
     <div className='item1 px-4 py-3'>

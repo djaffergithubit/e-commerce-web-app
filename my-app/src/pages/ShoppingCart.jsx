@@ -40,8 +40,9 @@ const ShoppingCart = () => {
     <div className=' lg:container py-10'>
         <h1 className=' text-3xl text-[#333333] font-medium py-3'>Shopping Cart</h1>
         {currentUserCarts.length > 0 ? (<div>
-          <div className={`${overflow ? 'w-full max-w-[975px] overflow-x-scroll xl:block' : ''} pb-2`}>
-            <Head
+          <div className={`${overflow ? 'w-full max-w-[975px] overflow-x-scroll xl:block' : ''} pb-2 `}>
+            <Head 
+              forOrderDetails={false}
             />
             <section>
               {currentUserCarts.map((item, index)=>(

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Head = (forOrderDetails) => {
+const Head = ({ forOrderDetails }) => {
   return (
         <div className='w-[975px]'>
             <ul className=' grid grid-cols-12 border-y-2 border-solid border-blue-400'>

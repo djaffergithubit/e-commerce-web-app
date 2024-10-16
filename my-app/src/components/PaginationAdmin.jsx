@@ -1,7 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import ProductItems from './productItems';
-import axios from 'axios';
 import Table from './Table';
 
 function PaginationAdmin( props ) {
@@ -15,15 +13,6 @@ function PaginationAdmin( props ) {
     );
     setItemOffset(newOffset);
   }, [props.items, props.itemsPerPage]);
-
- // fetch the products from the server
-//   useEffect(() => {
-//     axios.get('http://localhost:3500/products')
-//       .then((response) => {
-//         setItems(response.data);
-//       })
-//       .catch((error) => console.log(error));
-//   }, []);
 
   const endOffset = itemOffset + props.itemsPerPage;
   const currentItems = props.items.slice(itemOffset, endOffset);
@@ -46,8 +35,6 @@ function PaginationAdmin( props ) {
         }
     })
 }, [window.innerWidth])
-
-
 
   return (
     <div className={`w-full ${!showScroll && 'max-w-[915px] overflow-x-scroll'}`}>

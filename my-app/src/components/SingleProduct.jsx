@@ -23,6 +23,8 @@ const SingleProduct = ({ product, bool }) => {
 
   useEffect(()=>{
     getProductReviews()
+    console.log('single product', product.description);
+    
   }, [])
 
   useEffect(()=>{
@@ -41,7 +43,7 @@ const SingleProduct = ({ product, bool }) => {
   }, [productReviews])
 
   return (
-    <div key={product.product_id} className={` shadow-xl ${bool && 'border-x-2 border-solid border-gray-300'} max-w-[240px] w-full h-full mr-2`} >
+    <div key={product.product_id} className={` shadow-xl ${bool && 'border-x-2 border-solid border-gray-300'} max-w-[240px] w-full h-full mr-2 `} >
         <div className=" text-center h-full">
             <img 
                 className=' cursor-pointer w-full h-[227px]' 
@@ -76,8 +78,7 @@ const SingleProduct = ({ product, bool }) => {
                     ({productReviews.length})
                   </div>
                 }
-                {/* mb-1 text-[20px] font-medium text-[#333333] */}
-                <h1 className=' text-[20px] font-normal text-[#333333] border-b-[1px] border-solid border-gray-400'> 
+                <h1 className=' text-[20px] font-normal text-[#333333] mb-5'> 
                   {
                     product.productName.length <= 16 ? 
                         product.productName 
@@ -85,20 +86,6 @@ const SingleProduct = ({ product, bool }) => {
                         `${product.productName.slice(0, 16)}...`
                   }
                 </h1>
-                {
-                    bool && 
-                      <p className=" mb-2 text-sm text-gray-500 font-light tracking-wide ">
-                        {product.description.length <= 16 ? 
-                              product.description 
-                          :
-                            ` ${product.description.slice(0, 16)}...`}
-                      </p>
-                    //   <p  dangerouslySetInnerHTML={{ __html: product.description.length <= 16 ? 
-                    //     product.description 
-                    // :
-                    //   ` ${product.description.slice(0, 16)}...`}} />
-                      
-                  }
                 <ProductButton
                   product={product}
                 />

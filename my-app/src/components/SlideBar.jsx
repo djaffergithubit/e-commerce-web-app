@@ -29,7 +29,6 @@ const SlideBar = ( props ) => {
     }, [])
 
   return (
-    // 'fixed top-[80px] max-w-[330px] bg-white h-full'
     <div className={`w-full ${(props.showSidebar ) ? 'sticky max-w-[250px] top-10' : (!props.showSidebar && props.iconClicked) ? 'fixed top-0 h-full z-[7000]': 'hidden'} flex`}>
         <div className=' max-w-[330px] w-full bg-white'>
         <div>

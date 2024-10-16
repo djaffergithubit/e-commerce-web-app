@@ -27,9 +27,9 @@ const SingleCart = ({index, item, quantity}) => {
 
   return (
     <div className={`${index%2 !== 0 && ' bg-slate-200 border-y-[1px] border-solid border-gray-300'} cursor-pointer w-[975px]`} key={index}>
-        <ul className=' grid grid-cols-12 '>
+        <ul className="grid grid-cols-12">
             <li className=' col-span-1 px-3 py-2'>{index+1}</li>
-            <li className={` px-3 py-2 text-[#333333] font-semibold text-md ${quantity ? 'col-span-5' : 'col-span-6'}`}>
+            <li className={` px-3 py-2 text-[#333333] font-semibold text-md ${quantity ? ' col-span-5' : 'col-span-6'}`}>
                 <div >
                     {item.productName}
                     <div >

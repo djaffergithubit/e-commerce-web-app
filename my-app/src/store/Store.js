@@ -4,7 +4,7 @@ import authTokenReducer from "../states/tokenSlice"
 import isAuthReducer from "../states/isAuth"
 import showElementReducer from "../states/showElementSlice"
 import showSidebarReducer from "../states/showSidebarSlice"
-import activeButtonReducer from "../states/activeButtonSlice"
+import activeFilterButtonReducer from "../states/activeButtonSlice"
 import cartSlice from "../states/cartSlice"
 import currentUserReducer from "../states/currentUserSlice"
 import currentBrandReducer from "../states/currentBrandSlice"
@@ -18,7 +18,7 @@ export const Store = configureStore({
         isAuth: isAuthReducer,
         showElement: showElementReducer,
         showSidebar: showSidebarReducer,
-        activeButton: activeButtonReducer,
+        activeFilterButton: activeFilterButtonReducer,
         cart: cartSlice,
         currentUser: currentUserReducer,
         currentBrand: currentBrandReducer,

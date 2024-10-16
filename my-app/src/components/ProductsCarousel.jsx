@@ -60,9 +60,6 @@ function ProductsCarousel({ title, data }) {
                     containerClass=""
                     itemClass=" flex justify-center"
                 >
-                        
-               
-
             {data.map((product)=>(
                 <SingleProduct
                     key={product._id}
@@ -70,8 +67,6 @@ function ProductsCarousel({ title, data }) {
                     bool={true}
                 />
             )) }
-
-           
         </Carousel> 
     </div>
 }

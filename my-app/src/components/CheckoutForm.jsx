@@ -61,28 +61,23 @@ const CheckoutForm = ({ shipping, makePayment }) => {
         })
     }
 
-    const isFormValid = (form) => {
-        for (const key in form) {
-            if (!form[key]) {
-                return false;
-            }
-        }
-        return true; 
-    };
+    // const isFormValid = (form) => {
+    //     for (const key in form) {
+    //         if (!form[key]) {
+    //             return false;
+    //         }
+    //     }
+    //     return true; 
+    // };
 
-    const handleError = () => {
-        console.log('Please fill in all fields')
-    }
-
-    useEffect(()=>{
-        console.log(shippingForm)
-    }
-    , [shippingForm])
+    // const handleError = () => {
+    //     console.log('Please fill in all fields')
+    // }
 
   return (
     <div className=' bg-white rounded-md shadow-lg w-full p-[10px]'>
         <h1 className=' text-[#333333] text-[25px] font-light mb-[10px]'>{shipping ? 'Shipping' : 'Billing'} Address</h1>
-        <form action="">
+        <form action="" onSubmit={makePayment}>
             <div className=' flex flex-col'>
                 <label htmlFor="recipientName" className=' text-sm text-[#000000] font-medium'>Recipient Name</label>
                 <input 
@@ -92,6 +87,7 @@ const CheckoutForm = ({ shipping, makePayment }) => {
                     onChange={shipping ? handleShippingChange : handleBillingChange}
                     value={shipping ? shippingForm.recipientName : billingForm.recipientName}
                     name='recipientName'
+                    required= {shipping ? false : true}
                     />
             </div>
             <div className=' flex flex-col'>
@@ -103,6 +99,7 @@ const CheckoutForm = ({ shipping, makePayment }) => {
                     onChange={shipping ? handleShippingChange : handleBillingChange}
                     value={shipping ? shippingForm.addressLine1 : billingForm.addressLine1}
                     name='addressLine1'
+                    required= {shipping ? false : true}
                     />
             </div>
             <div className=' flex flex-col'>
@@ -114,6 +111,7 @@ const CheckoutForm = ({ shipping, makePayment }) => {
                     onChange={shipping ? handleShippingChange : handleBillingChange}
                     value={shipping ? shippingForm.addressLine2 : billingForm.addressLine2}
                     name='addressLine2'
+                    required= {shipping ? false : true}
                     />
             </div>
             <div className=' flex flex-col'>
@@ -125,6 +123,7 @@ const CheckoutForm = ({ shipping, makePayment }) => {
                     onChange={shipping ? handleShippingChange : handleBillingChange}
                     value={shipping ? shippingForm.city : billingForm.city}
                     name='city'
+                    required= {shipping ? false : true}
                     />
             </div>
             <div className=' flex flex-col'>
@@ -136,6 +135,7 @@ const CheckoutForm = ({ shipping, makePayment }) => {
                     onChange={shipping ? handleShippingChange : handleBillingChange}
                     value={shipping ? shippingForm.state : billingForm.state}
                     name='state'
+                    required= {shipping ? false : true}
                     />
             </div>
             <div className=' flex flex-col'>
@@ -147,9 +147,10 @@ const CheckoutForm = ({ shipping, makePayment }) => {
                     onChange={shipping ? handleShippingChange : handleBillingChange}
                     value={shipping ? shippingForm.postalCode : billingForm.postalCode}
                     name='postalCode'
+                    required= {shipping ? false : true}
                     />
             </div>
-            <select name="country" id="" className='px-[10px] py-[8px] my-[10px] border-[1px] border-solid border-[#333333] outline-none text-base w-full' onChange={shipping ? handleShippingChange : handleBillingChange} value={shipping ? shippingForm.country : billingForm.country}>
+            <select name="country" id="" className='px-[10px] py-[8px] my-[10px] border-[1px] border-solid border-[#333333] outline-none text-base w-full' onChange={shipping ? handleShippingChange : handleBillingChange} value={shipping ? shippingForm.country : billingForm.country} required= {shipping ? false : true}>
                 {countries.map(country => (
                     <option key={country} value={country}>{country}</option>
                 )) }
@@ -163,12 +164,12 @@ const CheckoutForm = ({ shipping, makePayment }) => {
                     onChange={shipping ? handleShippingChange : handleBillingChange}
                     value={shipping ? shippingForm.phone : billingForm.phone}
                     name='phone'
+                    required= {shipping ? false : true}
                     />
             </div>
             {!shipping && <button
-            type='button' 
-            className='px-2 py-1 text-base bg-[#007bff] text-white border-1.5 border-solid border-[#007bff] flex items-center gap-1'
-            onClick={isFormValid(billingForm) ? makePayment : handleError}>
+            type='submit' 
+            className='px-2 py-1 text-base bg-[#007bff] text-white border-1.5 border-solid border-[#007bff] flex items-center gap-1'>
             Proceed to Checkout
     </button>}
         </form>

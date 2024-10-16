@@ -5,6 +5,7 @@ import { showSidebarValue } from '../states/showSidebarSlice'
 import FilterButton from './FilterButton'
 import axios from 'axios'
 import { currentBrandValue, setCurrentBrand } from '../states/currentBrandSlice'
+import { setActiveButton } from '../states/activeButtonSlice'
 
 const ShopSidebar = () => {
 
@@ -34,7 +35,6 @@ const ShopSidebar = () => {
         console.log(currentBrand)
     }, [currentBrand])
 
-
   return (
      <div className={` ${(showElement && !showSideBar) ? 'hidden' : (showElement && showSideBar) ? 'fixed left-0 bg-white' : '' } mb-2 pt-6 px-3 pb-4 border-[1px] border-solid border-[#333333] max-w-[192px] w-full md:order-1 order-2`}>
         <div>
@@ -56,12 +56,10 @@ const ShopSidebar = () => {
             </div>
         </div>
 
-        <div>
-            <h1 className=' mb-2 text-xl font-medium text-[#333333]'>Price</h1>
-            <input className=' w-full' type="range" />
-        </div>
-
-        <button className=' px-2 py-1 text-white bg-[#ff4500] rounded'>Clear Filter</button>
+        <button className=' px-2 py-1 mt-3 text-white bg-[#ff4500] rounded' onClick={() => {
+            dispatch(setActiveButton({ value: 'All' }));
+            dispatch(setCurrentBrand({ value: 'All' }))
+        }}>Clear Filter</button>
     </div>
   )
 }

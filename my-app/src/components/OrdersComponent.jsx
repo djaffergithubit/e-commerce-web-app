@@ -1,5 +1,4 @@
 import React from 'react'
-import Table from './Table'
 import PaginationAdmin from './paginationAdmin'
 
 const OrdersComponent = ({ data }) => {

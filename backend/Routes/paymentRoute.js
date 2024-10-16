@@ -3,7 +3,7 @@ const router = express.Router()
 const {Order} = require('../Models/orders')
 const { Product } = require('../Models/products')
 const verifyToken = require('../middleware/verifyToken')
-const stripe = require('stripe')("sk_test_51OmKpWDSijvIwbhLNbYfUYJxedtV2CsRj6tTFUcu9rpkZVR6cTbn4BM4o4C0RTmeGw8KuB2AO9Nb6yj49seqexF700LKXSJTP0")
+const stripe = require('stripe')(process.env.STRIPE_KEY)
 
 router.post('/checkout-session', verifyToken, async (req, res) => {
     try {
